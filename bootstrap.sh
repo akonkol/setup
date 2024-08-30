@@ -5,6 +5,11 @@ if [[ ! $(which brew) ]]; then
   /usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+open -g -j -a iTerm 2>/dev/null
+if [[ $? -eq 1 ]]; then
+  brew install --cask iterm2   
+fi
+
 # echo "Installing Brew bundle.."
 brew bundle install --file Brewfile
 
@@ -22,7 +27,10 @@ echo "Installing vim plugins"
 echo "Symlinking custom configs.."
 ln -s -F ${HOME}/.vim/tmux_example.conf ${HOME}/.tmux.conf
 
-ln -s -F $(brew --prefix oh-my-posh)/themes/pure.omp.json ${HOME}/.pure.omp.json
-echo 'eval "$(oh-my-posh init zsh --config ~/.pure.omp.json)"' >> ${HOME}/.zshrc
+
+mkdir -p ${HOME}/.zsh/plugins
+cp kubernetes-context.bash ${HOME}/.zsh/plugins/.
+
+cp .zshrc ${HOME}/.
 
 echo "Done.."
