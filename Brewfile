@@ -1,6 +1,7 @@
 tap "homebrew/bundle"
 tap "homebrew/services"
 cask "iterm2"
+cask "font-meslo-for-powerlevel10k"
 brew "ack"
 brew "curl"
 brew "git"

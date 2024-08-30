@@ -5,7 +5,7 @@ if [[ ! $(which brew) ]]; then
   /usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-echo "Installing Brew bundle.."
+# echo "Installing Brew bundle.."
 brew bundle install --file Brewfile
 
 echo "Removing existing vim dotfiles"
@@ -21,5 +21,8 @@ echo "Installing vim plugins"
 
 echo "Symlinking custom configs.."
 ln -s -F ${HOME}/.vim/tmux_example.conf ${HOME}/.tmux.conf
+
+ln -s -F $(brew --prefix oh-my-posh)/themes/pure.omp.json ${HOME}/.pure.omp.json
+echo 'eval "$(oh-my-posh init zsh --config ~/.pure.omp.json)"' >> ${HOME}/.zshrc
 
 echo "Done.."
